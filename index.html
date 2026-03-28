@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>حول مِيعاد - About Meead</title>
     <style>
-        :root { --bg: #f2f2f7; --card: #ffffff; --text: #000000; --sec: #666666; --line: #e5e5ea; --icon: #000000; }
-        @media (prefers-color-scheme: dark) { :root { --bg: #000000; --card: #1c1c1e; --text: #ffffff; --sec: #ebebf599; --line: #38383a; --icon: #ffffff; } }
-        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; -webkit-font-smoothing: antialiased; line-height: 1.6; }
-        .container { background: var(--card); border-radius: 28px; padding: 35px 25px; max-width: 400px; margin: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        :root { --bg: #f2f2f7; --card: #ffffff; --text: #000000; --sec: #666666; --line: #e5e5ea; --icon: #000000; --accent: #007AFF; --pill-bg: #e5e5ea; --pill-active: #007AFF; --pill-text: #333; --pill-active-text: #fff; }
+        @media (prefers-color-scheme: dark) { :root { --bg: #000000; --card: #1c1c1e; --text: #ffffff; --sec: #ebebf599; --line: #38383a; --icon: #ffffff; --accent: #0A84FF; --pill-bg: #38383a; --pill-active: #0A84FF; --pill-text: #ccc; --pill-active-text: #fff; } }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, system-ui, 'SF Pro Text', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; -webkit-font-smoothing: antialiased; line-height: 1.7; }
+        .container { background: var(--card); border-radius: 28px; padding: 35px 25px; max-width: 420px; margin: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .lang-switcher { display: flex; justify-content: center; gap: 6px; margin-bottom: 25px; flex-wrap: wrap; }
+        .lang-btn { border: none; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; background: var(--pill-bg); color: var(--pill-text); transition: all 0.2s ease; }
+        .lang-btn.active { background: var(--pill-active); color: var(--pill-active-text); }
         .section-title { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 20px; }
         .content { font-size: 15px; color: var(--sec); margin-bottom: 25px; text-align: justify; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
-        .content h3 { font-size: 16px; color: var(--text); margin-top: 15px; margin-bottom: 5px; }
-        .eng { direction: ltr; text-align: left; }
+        .content h3 { font-size: 16px; color: var(--text); margin-top: 18px; margin-bottom: 6px; font-weight: 700; }
+        .content b { color: var(--text); }
+        .lang-block { display: none; }
+        .lang-block.active { display: block; }
+        [dir="ltr"] .content { text-align: left; }
         .dev-info { text-align: center; margin-top: 30px; }
         .avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--text); margin-bottom: 10px; object-fit: cover; }
         .dev-name { font-size: 17px; font-weight: 700; }
@@ -22,31 +29,98 @@
 </head>
 <body>
 <div class="container">
-    
-    <div class="eng">
-        <div class="section-title">About Meead</div>
+
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="setLang('ar')">العربية</button>
+        <button class="lang-btn" onclick="setLang('en')">English</button>
+        <button class="lang-btn" onclick="setLang('fr')">Français</button>
+        <button class="lang-btn" onclick="setLang('tr')">Türkçe</button>
+        <button class="lang-btn" onclick="setLang('de')">Deutsch</button>
+    </div>
+
+    <!-- Arabic -->
+    <div class="lang-block" id="lang-ar">
+        <div class="section-title">حول مِيعاد</div>
         <div class="content">
-            <b>Meead – Your ultimate partner for managing work shifts and productivity.</b><br><br>
-            Meead is a comprehensive solution specifically designed for professionals seeking precision and elegance in time management. It combines shift tracking with meticulous professional details to ensure a seamless productivity experience.
-            <h3>What makes Meead exceptional?</h3>
-            • <b>Comprehensive Attendance:</b> Effortlessly track shifts, overtime, delays, permissions, and leaves.<br>
-            • <b>Smart Alerts:</b> Never miss a punch-in/out with custom alerts, plus notifications for shift starts/ends and delayed tasks.<br>
-            • <b>Full Customization:</b> Choose from 20+ professional themes (including Meead Pro exclusives) and customize your dashboard widgets (Summary, Calendar, Tasks, Absence, etc.).<br>
-            • <b>Secure Cloud Sync:</b> Sync your data via iCloud to access your information across all your devices with a single tap.<br>
-            • <b>Quiet Work Environment:</b> Completely ad-free with full privacy protection—your data remains yours alone.
+            ميعاد هو تطبيقك الشامل لتنظيم حياتك العملية — من جدولة الدوام وتتبع المهام إلى إدارة الإجازات ومتابعة الأداء، كل ذلك في مكان واحد بتصميم أنيق وتجربة سلسة.
+            <h3>لماذا ميعاد؟</h3>
+            • <b>تقويم مزدوج:</b> ميلادي وهجري معاً مع تبديل فوري وثلاثة أوضاع عرض.<br>
+            • <b>جدولة ذكية:</b> شفتات متغيرة أو دوام ثابت مع نمط تكرار تلقائي وتنبيهات قبل البداية والنهاية.<br>
+            • <b>إدارة المهام:</b> أولويات، تكرار، تنبيهات ذكية، أيقونات وألوان مخصصة، وفلترة متقدمة.<br>
+            • <b>متابعة الأداء:</b> تتبع الأوفر تايم والتأخير والاستئذان والغيابات والإجازات بإحصائيات مفصّلة.<br>
+            • <b>ودجتس تفاعلية:</b> ودجتس متعددة للشاشة الرئيسية وشاشة القفل مع أزرار إكمال تفاعلية.<br>
+            • <b>ثيمات متنوعة:</b> ثيمات داكنة وفاتحة مع خلفيات متحركة وأيقونات بديلة.<br>
+            • <b>مزامنة iCloud:</b> بياناتك متزامنة عبر جميع أجهزتك بأمان.<br>
+            • <b>خصوصية تامة:</b> لا إعلانات، لا تتبع — بياناتك محلية بالكامل.
         </div>
     </div>
 
-    <div class="section-title">حول مِيعاد</div>
-    <div class="content">
-        <b>ميعاد (Meead) – شريكك المثالي لإدارة الدوام والإنتاجية</b><br><br>
-        تطبيق "ميعاد" هو الحل المتكامل والمصمم خصيصاً للمحترفين الذين يبحثون عن الدقة والأناقة في تنظيم وقتهم. يجمع التطبيق بين إدارة نوبات العمل (الدوام) وبين رصد أدق التفاصيل المهنية لضمان تجربة إنتاجية لا تشوبها شائبة.
-        <h3>ما الذي يجعل "ميعاد" استثنائياً؟</h3>
-        • <b>إدارة شاملة للحضور:</b> تتبع ساعات الدوام، الأوفر تايم (العمل الإضافي)، التأخير، الاستئذان، والإجازات بكل سهولة.<br>
-        • <b>نظام تنبيهات ذكي:</b> لا تفوت بصمة الحضور أو الانصراف مع تنبيهات مخصصة، بالإضافة إلى تنبيهات بداية ونهاية الدوام والمهام المتأخرة.<br>
-        • <b>تخصيص كامل للواجهة:</b> اختر من بين أكثر من 20 ثيماً احترافياً (بما في ذلك ثيمات ميعاد برو الحصرية) وخصص بطاقات الصفحة الرئيسية لتظهر ما يهمك فقط (الملخص، التقويم، المهام، الغياب، وغيرها).<br>
-        • <b>مزامنة سحابية آمنة:</b> مزامنة بياناتك عبر iCloud تضمن لك الوصول لمعلوماتك من جميع أجهزتك بنقرة واحدة.<br>
-        • <b>بيئة عمل هادئة:</b> تطبيق خالي تماماً من الإعلانات، مع حماية كاملة لخصوصيتك، حيث تبقى بياناتك ملكك وحدك.
+    <!-- English -->
+    <div class="lang-block" id="lang-en">
+        <div class="section-title">About Meead</div>
+        <div class="content">
+            Meead is your all-in-one app for organizing your work life — from shift scheduling and task tracking to leave management and performance monitoring, all in one place with an elegant design and smooth experience.
+            <h3>Why Meead?</h3>
+            • <b>Dual Calendar:</b> Gregorian and Hijri side by side with instant switching and three display modes.<br>
+            • <b>Smart Scheduling:</b> Variable shifts or fixed weekly schedule with auto-repeat patterns and pre-start/end alerts.<br>
+            • <b>Task Management:</b> Priorities, recurrence, smart notifications, custom icons and colors, and advanced filtering.<br>
+            • <b>Performance Tracking:</b> Track overtime, late arrivals, permissions, absences, and leaves with detailed statistics.<br>
+            • <b>Interactive Widgets:</b> Multiple home screen and lock screen widgets with interactive task completion buttons.<br>
+            • <b>Themes:</b> Dark and light themes with animated backgrounds and alternate app icons.<br>
+            • <b>iCloud Sync:</b> Your data synced securely across all your devices.<br>
+            • <b>Full Privacy:</b> No ads, no tracking — your data stays on your device.
+        </div>
+    </div>
+
+    <!-- French -->
+    <div class="lang-block" id="lang-fr">
+        <div class="section-title">À propos de Meead</div>
+        <div class="content">
+            Meead est votre application tout-en-un pour organiser votre vie professionnelle — de la planification des horaires au suivi des tâches, en passant par la gestion des congés et le suivi des performances, le tout dans un design élégant.
+            <h3>Pourquoi Meead ?</h3>
+            • <b>Double calendrier :</b> Grégorien et Hijri côte à côte avec basculement instantané et trois modes d'affichage.<br>
+            • <b>Planification intelligente :</b> Horaires variables ou fixes avec répétition automatique et alertes avant le début et la fin.<br>
+            • <b>Gestion des tâches :</b> Priorités, récurrence, notifications intelligentes, icônes et couleurs personnalisées, filtrage avancé.<br>
+            • <b>Suivi des performances :</b> Heures supplémentaires, retards, autorisations, absences et congés avec statistiques détaillées.<br>
+            • <b>Widgets interactifs :</b> Plusieurs widgets pour l'écran d'accueil et l'écran de verrouillage avec boutons interactifs.<br>
+            • <b>Thèmes :</b> Thèmes sombres et clairs avec arrière-plans animés et icônes alternatives.<br>
+            • <b>Synchronisation iCloud :</b> Vos données synchronisées en toute sécurité sur tous vos appareils.<br>
+            • <b>Confidentialité totale :</b> Pas de publicités, pas de suivi — vos données restent sur votre appareil.
+        </div>
+    </div>
+
+    <!-- Turkish -->
+    <div class="lang-block" id="lang-tr">
+        <div class="section-title">Meead Hakkında</div>
+        <div class="content">
+            Meead, iş hayatınızı düzenlemeniz için hepsi bir arada uygulamanızdır — vardiya planlamasından görev takibine, izin yönetiminden performans izlemeye kadar her şey şık bir tasarımla tek yerde.
+            <h3>Neden Meead?</h3>
+            • <b>Çift Takvim:</b> Miladi ve Hicri takvim yan yana, anında geçiş ve üç görüntüleme modu.<br>
+            • <b>Akıllı Planlama:</b> Değişken vardiyalar veya sabit haftalık program, otomatik tekrar deseni ve başlangıç/bitiş uyarıları.<br>
+            • <b>Görev Yönetimi:</b> Öncelikler, tekrarlama, akıllı bildirimler, özel simgeler ve renkler, gelişmiş filtreleme.<br>
+            • <b>Performans Takibi:</b> Fazla mesai, geç kalma, izin, devamsızlık ve tatilleri ayrıntılı istatistiklerle takip edin.<br>
+            • <b>Etkileşimli Widget'lar:</b> Ana ekran ve kilit ekranı için etkileşimli görev tamamlama düğmeleriyle birden fazla widget.<br>
+            • <b>Temalar:</b> Animasyonlu arka planlar ve alternatif uygulama simgeleriyle karanlık ve aydınlık temalar.<br>
+            • <b>iCloud Senkronizasyonu:</b> Verileriniz tüm cihazlarınızda güvenle senkronize edilir.<br>
+            • <b>Tam Gizlilik:</b> Reklam yok, izleme yok — verileriniz cihazınızda kalır.
+        </div>
+    </div>
+
+    <!-- German -->
+    <div class="lang-block" id="lang-de">
+        <div class="section-title">Über Meead</div>
+        <div class="content">
+            Meead ist Ihre All-in-One-App zur Organisation Ihres Arbeitslebens — von der Schichtplanung über die Aufgabenverfolgung bis hin zur Urlaubsverwaltung und Leistungsüberwachung, alles an einem Ort mit elegantem Design.
+            <h3>Warum Meead?</h3>
+            • <b>Doppelkalender:</b> Gregorianisch und Hijri nebeneinander mit sofortigem Wechsel und drei Anzeigemodi.<br>
+            • <b>Intelligente Planung:</b> Variable Schichten oder fester Wochenplan mit automatischer Wiederholung und Start-/Ende-Benachrichtigungen.<br>
+            • <b>Aufgabenverwaltung:</b> Prioritäten, Wiederholung, intelligente Benachrichtigungen, benutzerdefinierte Symbole und Farben, erweiterte Filterung.<br>
+            • <b>Leistungsüberwachung:</b> Überstunden, Verspätungen, Genehmigungen, Abwesenheiten und Urlaub mit detaillierten Statistiken.<br>
+            • <b>Interaktive Widgets:</b> Mehrere Widgets für den Startbildschirm und Sperrbildschirm mit interaktiven Aufgaben-Buttons.<br>
+            • <b>Designs:</b> Dunkle und helle Designs mit animierten Hintergründen und alternativen App-Symbolen.<br>
+            • <b>iCloud-Synchronisierung:</b> Ihre Daten werden sicher auf allen Geräten synchronisiert.<br>
+            • <b>Volle Privatsphäre:</b> Keine Werbung, kein Tracking — Ihre Daten bleiben auf Ihrem Gerät.
+        </div>
     </div>
 
     <div class="dev-info">
@@ -59,5 +133,44 @@
         <div class="copyright">جميع الحقوق محفوظة مِيعاد © 2026<br>All Rights Reserved - Meead</div>
     </div>
 </div>
+
+<script>
+    const rtlLangs = ['ar'];
+
+    function setLang(lang) {
+        document.querySelectorAll('.lang-block').forEach(b => b.classList.remove('active'));
+        const block = document.getElementById('lang-' + lang);
+        if (block) block.classList.add('active');
+
+        const isRtl = rtlLangs.includes(lang);
+        document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.onclick.toString().includes("'" + lang + "'")) btn.classList.add('active');
+        });
+
+        try { localStorage.setItem('meead_lang', lang); } catch(e) {}
+    }
+
+    function detectLang() {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get('lang');
+        if (urlLang && document.getElementById('lang-' + urlLang)) return urlLang;
+
+        try {
+            const saved = localStorage.getItem('meead_lang');
+            if (saved && document.getElementById('lang-' + saved)) return saved;
+        } catch(e) {}
+
+        const browserLang = (navigator.language || '').substring(0, 2);
+        if (document.getElementById('lang-' + browserLang)) return browserLang;
+
+        return 'ar';
+    }
+
+    setLang(detectLang());
+</script>
 </body>
 </html>
